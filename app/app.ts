@@ -6,6 +6,11 @@ let cached: any[][] = [];
 let timer: NodeJS.Timeout | null = null;
 
 export function stdout(...args: any[]) {
+	if (WRITE_ARR_SIZE === 0 || WRITE_TIME === 0) {
+		onLog(...args);
+		return;
+	}
+
 	cached.push(args);
 
 	if (cached.length >= WRITE_ARR_SIZE) {
