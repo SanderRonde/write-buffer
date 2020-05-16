@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"alwaysStrict": true,
 		"forceConsistentCasingInFileNames": true,
-		"module": "ESNext",
+		"module": "CommonJS",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"noImplicitThis": true,
