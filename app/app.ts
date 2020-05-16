@@ -1,5 +1,5 @@
 let WRITE_ARR_SIZE = 500;
-let WRITE_TIME = 30;
+let WRITE_TIME = 30 * 1000;
 let onLog: (...args: any[]) => void = console.log.bind(console);
 
 let cached: any[][] = [];
@@ -16,7 +16,7 @@ export function stdout(...args: any[]) {
 function startTimer() {
 	timer = setTimeout(() => {
 		flush();
-	}, WRITE_TIME * 1000);
+	}, WRITE_TIME);
 }
 
 export function flush() {
