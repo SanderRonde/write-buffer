@@ -22,7 +22,7 @@
 		"declaration": true,
 		"sourceMap": true,
 		"resolveJsonModule": true,
-		"outDir": "../build/es",
+		"outDir": "../build/cjs",
 		"composite": true
 	},
 	"compileOnSave": true,
