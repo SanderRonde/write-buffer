@@ -1,6 +1,6 @@
 {
 	"name": "@sanderronde/write-buffer",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"main": "build/cjs/app.js",
 	"module": "build/es/app.js",
 	"repository": "https://github.com/SanderRonde/write-buffer",
