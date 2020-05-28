@@ -55,7 +55,7 @@ export function writeBufferInit(options: {
 	maxLogs: number;
 	onLog: (...args: any[]) => void;
 	disabled?: boolean;
-	shouldBeEnabled?(): boolean;
+	shouldBeEnabled?(): boolean|Promise<boolean>;
 }) {
 	if (options.maxSeconds === 0 || options.maxLogs === 0 || options.disabled) {
 		disabled = true;
