@@ -1,12 +1,14 @@
+let disabled: boolean = false;
 let WRITE_ARR_SIZE = 500;
 let WRITE_TIME = 30 * 1000;
 let onLog: (...args: any[]) => void = console.log.bind(console);
+let shouldBeEnabled: () => boolean = () => true;
 
 let cached: any[][] = [];
 let timer: NodeJS.Timeout | null = null;
 
 export function stdout(...args: any[]) {
-	if (WRITE_ARR_SIZE === 0 || WRITE_TIME === 0) {
+	if (disabled) {
 		onLog(...args);
 		return;
 	}
@@ -35,16 +37,34 @@ export function flush() {
 
 	cached = [];
 
+	disabled = !shouldBeEnabled();
+
 	startTimer();
+}
+
+export function disable() {
+	disabled = true;
+}
+
+export function enable() {
+	disabled = false;
 }
 
 export function writeBufferInit(options: {
 	maxSeconds: number;
 	maxLogs: number;
 	onLog: (...args: any[]) => void;
+	disabled?: boolean;
+	shouldBeEnabled?(): boolean;
 }) {
+	if (options.maxSeconds === 0 || options.maxLogs === 0 || options.disabled) {
+		disabled = true;
+	} else {
+		disabled = false;
+	}
 	WRITE_ARR_SIZE = options.maxLogs;
 	WRITE_TIME = options.maxSeconds * 1000;
 	onLog = options.onLog;
+	options.shouldBeEnabled && (shouldBeEnabled = options.shouldBeEnabled);
 	startTimer();
 }

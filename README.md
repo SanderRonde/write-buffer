@@ -1,4 +1,5 @@
 # Write-buffer
+
 A log write buffering package meant to reduce file writes
 
 ## Installation
@@ -8,11 +9,16 @@ Run `npm install @sanderronde/write-buffer --save` or `yarn add @sanderronde/wri
 ## How to use
 
 Call `writeBufferInit()` with the following options:
-* `maxSeconds` the maximum amount of seconds before the contents should be written.
-* `maxLogs` the maximum amount of log entries before the contents should be written.
-* `onLog` the function to be called when logging should occur
+
+-   `maxSeconds` the maximum amount of seconds before the contents should be written.
+-   `maxLogs` the maximum amount of log entries before the contents should be written.
+-   `onLog` the function to be called when logging should occur
+-   `(disabled)` optional parameter that disables the buffering altogether
+-   `(shouldBeEnabled())` an optional function that is called every iteration. Can be used to disable or enable.
 
 After that you can call the `stdout(...)` function to write buffer anything you write to it. You can force a flush by calling the `flush()` function.
+
+Call `enable()` or `disable()` to enable or disable the buffering respectively.
 
 ## License
 
