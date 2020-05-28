@@ -14,7 +14,7 @@ Call `writeBufferInit()` with the following options:
 -   `maxLogs` the maximum amount of log entries before the contents should be written.
 -   `onLog` the function to be called when logging should occur
 -   `(disabled)` optional parameter that disables the buffering altogether
--   `(shouldBeEnabled())` an optional function that is called every iteration. Can be used to disable or enable.
+-   `(shouldBeEnabled())` an optional function that is called every iteration. Can be used to disable or enable. Can return a promise for a boolean or a boolean.
 
 After that you can call the `stdout(...)` function to write buffer anything you write to it. You can force a flush by calling the `flush()` function.
 

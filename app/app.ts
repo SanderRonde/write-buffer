@@ -2,7 +2,7 @@ let disabled: boolean = false;
 let WRITE_ARR_SIZE = 500;
 let WRITE_TIME = 30 * 1000;
 let onLog: (...args: any[]) => void = console.log.bind(console);
-let shouldBeEnabled: () => boolean = () => true;
+let shouldBeEnabled: () => Promise<boolean>|boolean = () => true;
 
 let cached: any[][] = [];
 let timer: NodeJS.Timeout | null = null;
@@ -26,7 +26,7 @@ function startTimer() {
 	}, WRITE_TIME);
 }
 
-export function flush() {
+export async function flush() {
 	if (timer) {
 		clearTimeout(timer);
 	}
@@ -37,7 +37,7 @@ export function flush() {
 
 	cached = [];
 
-	disabled = !shouldBeEnabled();
+	disabled = !await shouldBeEnabled();
 
 	startTimer();
 }
