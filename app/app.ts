@@ -1,4 +1,5 @@
 let disabled: boolean = false;
+let forceDisabled: boolean = false;
 let WRITE_ARR_SIZE = 500;
 let WRITE_TIME = 30 * 1000;
 let onLog: (...args: any[]) => void = console.log.bind(console);
@@ -37,7 +38,9 @@ export async function flush() {
 
 	cached = [];
 
-	disabled = !await shouldBeEnabled();
+	if (!forceDisabled) {
+		disabled = !await shouldBeEnabled();
+	}
 
 	startTimer();
 }
@@ -59,6 +62,7 @@ export function writeBufferInit(options: {
 }) {
 	if (options.maxSeconds === 0 || options.maxLogs === 0 || options.disabled) {
 		disabled = true;
+		forceDisabled = true;
 	} else {
 		disabled = false;
 	}
